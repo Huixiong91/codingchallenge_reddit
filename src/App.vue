@@ -2,8 +2,10 @@
   <v-app>
     <main>
       <v-content>
-        <post v-for="post in posts" :key="post.title" :post="post" v-on:voted="voted" >
-        </post>
+        <transition-group name="flip-list" tag="ul" mode="in-out">
+          <post v-for="post in posts" :key="post.title" :post="post" v-on:voted="voted" >
+          </post>
+        </transition-group>
       </v-content>
     </main>
     <v-footer app>
@@ -59,4 +61,9 @@ export default {
 }
 </script>
 
+<style lang="scss">
+.flip-list-move {
+  transition: transform 2s;
+}
+</style>
 
