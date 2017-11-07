@@ -20,7 +20,7 @@
                     <v-layout wrap>
                       <v-flex xs12>
                         <v-text-field label="Title" required
-                        :rules="[(v) => v.length <= 255 || 'Max 255 characters']"
+                        :rules="[validateNewTitle]"
                         :counter="255" v-model="newTopicTitle">
                         </v-text-field>
                       </v-flex>
@@ -31,7 +31,7 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-                  <v-btn color="blue darken-1" flat @click.native="createNewPost">Save</v-btn>
+                  <v-btn color="blue darken-1" flat @click.native="createNewPost" :disabled='saveBtnDisabled'>Save</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -56,6 +56,10 @@ export default {
     'post': Post
   },
   methods: {
+    validateNewTitle: function (title) {
+      this.saveBtnDisabled = !(title.length <= 255)
+      return title.length <= 255 || 'Max 255 characters!'
+    },
     sortPost: function () {
       this.posts.sort(function (a, b) {
         let netVotesA = a.numOfUpVotes - a.numOfDownVotes
@@ -81,6 +85,7 @@ export default {
     return {
       dialog: false,
       newTopicTitle: '',
+      saveBtnDisabled: false,
       posts: [
         {
           title: 'Post #1',
