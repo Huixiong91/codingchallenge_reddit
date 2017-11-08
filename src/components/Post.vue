@@ -4,10 +4,10 @@
       {{ post.numOfUpVotes}}
       {{ post.numOfDownVotes}}
       {{ netVotes }}
-      <v-btn id="upvote" @click="upVote">
+      <v-btn id="upvoteBtn" @click="upVote">
         Up
       </v-btn>
-      <v-btn id="downvote" @click="downVote">
+      <v-btn id="downvoteBtn" @click="downVote">
         Down
       </v-btn>
   </v-card>

@@ -6,7 +6,7 @@
           <v-toolbar-title>Reddit Clone</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn flat @click.native.stop="dialog = true">New Topic</v-btn>
+            <v-btn id="newTopicBtn" flat @click="dialog = true">New Topic</v-btn>
           </v-toolbar-items>
         </v-toolbar>
 
@@ -30,8 +30,8 @@
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
-                  <v-btn color="blue darken-1" flat @click.native="createNewPost" :disabled='saveBtnDisabled'>Save</v-btn>
+                  <v-btn id="dialogCloseBtn" color="blue darken-1" flat @click="dialog = false">Close</v-btn>
+                  <v-btn id="dialogSaveBtn" color="blue darken-1" flat @click="createNewPost" :disabled='saveBtnDisabled'>Save</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import Post from './components/post'
+import Post from './components/Post'
 
 export default {
   components: {
@@ -94,29 +94,8 @@ export default {
     return {
       dialog: false, // show dialog
       newTopicTitle: '',
-      saveBtnDisabled: false, // disable save button?
-      posts: [
-        {
-          title: 'Post #1',
-          numOfDownVotes: 0,
-          numOfUpVotes: 0
-        },
-        {
-          title: 'Post #2',
-          numOfDownVotes: 0,
-          numOfUpVotes: 0
-        },
-        {
-          title: 'Post #3',
-          numOfDownVotes: 0,
-          numOfUpVotes: 0
-        },
-        {
-          title: 'Post #4',
-          numOfDownVotes: 0,
-          numOfUpVotes: 0
-        }
-      ]
+      saveBtnDisabled: false,
+      posts: []
     }
   }
 }

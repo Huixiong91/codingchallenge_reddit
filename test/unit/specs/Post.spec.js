@@ -1,6 +1,5 @@
 // import Vue from 'vue'
 import Post from '@/components/Post'
-import { expect } from 'chai'
 import { mount } from 'vue-test-utils'
 
 describe('Post.vue', () => {
@@ -13,11 +12,8 @@ describe('Post.vue', () => {
       numOfUpVotes: 0,
       numOfDownVotes: 0
     }
-    wrapper = mount(Post, {
-      propsData: {
-        post: post
-      }
-    })
+    wrapper = mount(Post)
+    wrapper.setProps({post: post})
     vm = wrapper.vm
   })
   it('should accept "post" prop', () => {
@@ -26,13 +22,13 @@ describe('Post.vue', () => {
 
   it('increase numOfUpVotes upon clicking upvote button ', () => {
     expect(vm.post.numOfUpVotes).to.equal(0)
-    wrapper.find('#upvote').trigger('click')
+    wrapper.find('#upvoteBtn').trigger('click')
     expect(vm.post.numOfUpVotes).to.equal(1)
   })
 
   it('increase numOfDownVotes upon clicking downvote button ', () => {
     expect(vm.post.numOfDownVotes).to.equal(0)
-    wrapper.find('#downvote').trigger('click')
+    wrapper.find('#downvoteBtn').trigger('click')
     expect(vm.post.numOfDownVotes).to.equal(1)
   })
 })
