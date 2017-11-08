@@ -36,8 +36,8 @@
               </v-card>
             </v-dialog>
 
-        <transition-group name="flip-list" tag="ul" mode="in-out">
-          <post v-for="post in posts" :key="post.title" :post="post" v-on:voted="sortPost" >
+        <transition-group name="flip-list" tag="ul" mode="out-in">
+          <post v-for="post in top20Posts" :key="post.title" :post="post" v-on:voted="sortPost" >
           </post>
         </transition-group>
       </v-content>
@@ -56,10 +56,12 @@ export default {
     'post': Post
   },
   methods: {
+    // function to validate that the new post title is within 255 characters
     validateNewTitle: function (title) {
       this.saveBtnDisabled = !(title.length <= 255)
       return title.length <= 255 || 'Max 255 characters!'
     },
+    // method to sort based on net votes scores.
     sortPost: function () {
       this.posts.sort(function (a, b) {
         let netVotesA = a.numOfUpVotes - a.numOfDownVotes
@@ -69,6 +71,7 @@ export default {
         return 0
       })
     },
+    // method to create a new post
     createNewPost: function () {
       var newPost = { // new post object
         title: this.newTopicTitle,
@@ -81,11 +84,17 @@ export default {
       this.sortPost()
     }
   },
+  // data that are computed/derived
+  computed: {
+    top20Posts: function () {
+      return this.posts.slice(0, 20)
+    }
+  },
   data () {
     return {
-      dialog: false,
+      dialog: false, // show dialog
       newTopicTitle: '',
-      saveBtnDisabled: false,
+      saveBtnDisabled: false, // disable save button?
       posts: [
         {
           title: 'Post #1',
