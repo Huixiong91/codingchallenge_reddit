@@ -31,10 +31,12 @@ export default {
   methods: {
     downVote: function () {
       this.post.numOfDownVotes++
+      this.post.netVotes--
       this.$emit('voted')
     },
     upVote: function () {
       this.post.numOfUpVotes++
+      this.post.netVotes++
       this.$emit('voted')
     }
   },

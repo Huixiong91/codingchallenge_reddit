@@ -14,6 +14,7 @@
     "coveralls": "cat ./test/unit/coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
     "vue": "^2.4.2",
     "vuetify": "^0.16.9"
   },

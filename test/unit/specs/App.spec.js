@@ -33,7 +33,7 @@ describe('App.vue', () => {
     wrapper.setData({newTopicTitle: 'New Post!'})
     wrapper.find('#dialogSaveBtn').trigger('click')
     // expect the new post to be added
-    expect(wrapper.vm.posts).to.be.an('array').to.include({title: 'New Post!', 'numOfUpVotes': 0, 'numOfDownVotes': 0})
+    expect(wrapper.vm.posts).to.be.an('array').to.include({id: 0, title: 'New Post!', 'numOfUpVotes': 0, 'numOfDownVotes': 0, 'netVotes': 0})
     expect(createNewPostSpy.called).to.be.true
   })
 
@@ -42,29 +42,39 @@ describe('App.vue', () => {
     // stub initial posts
     let postsStub = [
       {
+        id: 0,
         title: 'Post 1',
         numOfUpVotes: 100,
-        numOfDownVotes: 50
+        numOfDownVotes: 50,
+        netVotes: 50
       },
       {
+        id: 1,
         title: 'Post 2',
         numOfUpVotes: 100,
-        numOfDownVotes: 51
+        numOfDownVotes: 51,
+        netVotes: 49
       },
       {
+        id: 2,
         title: 'Post 3',
         numOfUpVotes: 100,
-        numOfDownVotes: 51
+        numOfDownVotes: 51,
+        netVotes: 49
       },
       {
+        id: 3,
         title: 'Post 4',
         numOfUpVotes: 100,
-        numOfDownVotes: 99
+        numOfDownVotes: 99,
+        netVotes: 1
       },
       {
+        id: 4,
         title: 'Post 5',
         numOfUpVotes: 99,
-        numOfDownVotes: 100
+        numOfDownVotes: 100,
+        netVotes: -1
       }
     ]
     wrapper.setData({posts: postsStub})
@@ -79,12 +89,12 @@ describe('App.vue', () => {
     // expect the sortPost function to be called
     expect(sortPostSpy.called).to.be.true
     // new expected order. New post should be inserted at index 3
-    expect(wrapper.vm.posts[0]).to.deep.equal({title: 'Post 1', 'numOfUpVotes': 100, 'numOfDownVotes': 50})
-    expect(wrapper.vm.posts[1]).to.deep.equal({title: 'Post 2', 'numOfUpVotes': 100, 'numOfDownVotes': 51})
-    expect(wrapper.vm.posts[2]).to.deep.equal({title: 'Post 3', 'numOfUpVotes': 100, 'numOfDownVotes': 51})
-    expect(wrapper.vm.posts[3]).to.deep.equal({title: 'Post 4', 'numOfUpVotes': 100, 'numOfDownVotes': 99})
-    expect(wrapper.vm.posts[4]).to.deep.equal({title: 'New Post!', 'numOfUpVotes': 0, 'numOfDownVotes': 0})
-    expect(wrapper.vm.posts[5]).to.deep.equal({title: 'Post 5', 'numOfUpVotes': 99, 'numOfDownVotes': 100})
+    expect(wrapper.vm.posts[0]).to.deep.equal({id: 0, title: 'Post 1', 'numOfUpVotes': 100, 'numOfDownVotes': 50, 'netVotes': 50})
+    expect(wrapper.vm.posts[1]).to.deep.equal({id: 1, title: 'Post 2', 'numOfUpVotes': 100, 'numOfDownVotes': 51, 'netVotes': 49})
+    expect(wrapper.vm.posts[2]).to.deep.equal({id: 2, title: 'Post 3', 'numOfUpVotes': 100, 'numOfDownVotes': 51, 'netVotes': 49})
+    expect(wrapper.vm.posts[3]).to.deep.equal({id: 3, title: 'Post 4', 'numOfUpVotes': 100, 'numOfDownVotes': 99, 'netVotes': 1})
+    expect(wrapper.vm.posts[4]).to.deep.equal({id: 5, title: 'New Post!', 'numOfUpVotes': 0, 'numOfDownVotes': 0, 'netVotes': 0})
+    expect(wrapper.vm.posts[5]).to.deep.equal({id: 4, title: 'Post 5', 'numOfUpVotes': 99, 'numOfDownVotes': 100, 'netVotes': -1})
   })
 })
 

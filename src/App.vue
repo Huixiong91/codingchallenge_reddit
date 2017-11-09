@@ -36,8 +36,8 @@
               </v-card>
             </v-dialog>
 
-        <transition-group name="flip-list" tag="ul" mode="out-in">
-          <post v-for="(post,index) in top20Posts" :key="index" :post="post" v-on:voted="sortPost" >
+        <transition-group name="flip-list" tag="ul">
+          <post v-for="post in top20Posts" v-bind:key="post.id" :post="post" v-on:voted="sortPost" >
           </post>
         </transition-group>
       </v-content>
@@ -50,7 +50,7 @@
 
 <script>
 import Post from './components/Post'
-
+import _ from 'lodash'
 export default {
   components: {
     'post': Post
@@ -63,20 +63,25 @@ export default {
     },
     // method to sort based on net votes scores.
     sortPost: function () {
-      this.posts.sort(function (a, b) {
-        let netVotesA = a.numOfUpVotes - a.numOfDownVotes
-        let netVotesB = b.numOfUpVotes - b.numOfDownVotes
-        if (netVotesA > netVotesB) return -1
-        else if (netVotesA < netVotesB) return 1
-        return 0
-      })
+      // commented out as chrome sort is not stable, causing some vue animation on list rendering
+      // Edge and Firefox is stable...
+      // this.posts.sort(function (a, b) {
+      //   let netVotesA = a.numOfUpVotes - a.numOfDownVotes
+      //   let netVotesB = b.numOfUpVotes - b.numOfDownVotes
+      //   if (netVotesA > netVotesB) return -1
+      //   else if (netVotesA < netVotesB) return 1
+      //   return 0
+      // })
+      this.posts = _.orderBy(this.posts, ['netVotes'], ['desc']) // use lodash orderBy, which is stable.
     },
     // method to create a new post
     createNewPost: function () {
       var newPost = { // new post object
+        id: this.totalNumOfPosts,
         title: this.newTopicTitle,
         numOfDownVotes: 0,
-        numOfUpVotes: 0
+        numOfUpVotes: 0,
+        netVotes: 0
       }
       this.posts.push(newPost) // add new post to list of posts
       this.dialog = false // close the dialog
@@ -86,6 +91,9 @@ export default {
   },
   // data that are computed/derived
   computed: {
+    totalNumOfPosts: function () {
+      return this.posts.length
+    },
     top20Posts: function () {
       return this.posts.slice(0, 20)
     }
