@@ -18,8 +18,8 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs11 style="margin:5px">
-      <h5>{{ post.title }}</h5>
+      <v-flex xs11 style="margin:20px">
+        <h5 style="overflow:hidden;text-overflow:ellipsis">{{ post.title }}</h5>
       </v-flex>
     </v-layout>
   </v-card>
