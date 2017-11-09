@@ -1,18 +1,28 @@
 # codingchallenge_reddit 
-[![Build Status](https://travis-ci.org/Huixiong91/codingchallenge_reddit.svg?branch=master)](https://travis-ci.org/Huixiong91/codingchallenge_reddit)
-[![Coverage Status](https://coveralls.io/repos/github/Huixiong91/codingchallenge_reddit/badge.svg?branch=master)](https://coveralls.io/github/Huixiong91/codingchallenge_reddit?branch=master)
-
-
+<p align="center">
+  <a href="https://travis-ci.org/Huixiong91/codingchallenge_reddit"><img src="https://travis-ci.org/Huixiong91/codingchallenge_reddit.svg?branch=master" alt="Build Status"></a>
+  <a href="https://coveralls.io/github/Huixiong91/codingchallenge_reddit?branch=master"><img src="https://coveralls.io/repos/github/Huixiong91/codingchallenge_reddit/badge.svg?branch=master" alt="Coverage Status"></a>
+  <a href="https://github.com/Huixiong91/codingchallenge_reddit"><img src="https://img.shields.io/david/Huixiong91/codingchallenge_reddit.svg" alt="Dependencies"></a>
+</p>
 
 > A Coding Challenge to make a simple Reddit
 
 ## Build Setup
 
+First, clone this project and cd into the root.
+```
+git clone https://github.com/Huixiong91/codingchallenge_reddit.git
+cd codingchallenge_reddit
+```
+
+In root directory
 ``` bash
 # install dependencies
 npm install
+```
 
-# serve with hot reload at localhost:8080
+```
+# run locally with hot reload at localhost:8080
 npm run dev
 
 # build for production with minification
@@ -28,4 +38,6 @@ npm run unit
 npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+<p align="center">
+  Build with <a href="https://github.com/vuejs/vue">Vue</a> & <a href="https://github.com/vuetifyjs/vuetify">Vuetify</a>
+</p>
