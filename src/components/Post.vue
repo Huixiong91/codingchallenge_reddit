@@ -1,5 +1,5 @@
 <template>
-  <v-card style="margin:10px">
+  <v-card hover style="margin:10px" dark color="teal">
     <v-layout>
       <v-flex xs1 style="margin:5px">
         <v-layout column >

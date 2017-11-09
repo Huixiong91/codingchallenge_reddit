@@ -2,11 +2,13 @@
   <v-app>
     <main>
       <v-content>
-         <v-toolbar>
-          <v-toolbar-title>Reddit Clone</v-toolbar-title>
+         <v-toolbar app fixed dark color="indigo">
+          <v-toolbar-title>Coding Challenge Reddit</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn id="newTopicBtn" flat @click="dialog = true">New Topic</v-btn>
+            <v-btn id="newTopicBtn" flat @click="dialog = true" fab dark>
+              <v-icon>add</v-icon>
+            </v-btn>
           </v-toolbar-items>
         </v-toolbar>
 
