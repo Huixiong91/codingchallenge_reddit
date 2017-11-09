@@ -18,10 +18,11 @@ describe('App.vue', () => {
     expect(wrapper.vm.dialog).to.be.false
   })
 
-  it('should validateNewTitle to be <= 255 characters', () => {
+  it('should validateNewTitle to be between 1 to 255 characters', () => {
     let wrapper = mount(App)
+    expect(wrapper.vm.validateNewTitle('')).to.equal('Title must be within 1 to 255 characters')
     expect(wrapper.vm.validateNewTitle('validTitle')).to.be.true
-    expect(wrapper.vm.validateNewTitle('a very very long stringa very very long stringa very very long stringa very very long stringa very very long stringa very very long stringa very very long stringa very very long stringa very very long stringa very very long stringa very very long stringsss')).to.equal('Max 255 characters!')
+    expect(wrapper.vm.validateNewTitle('a very very long stringa very very long stringa very very long stringa very very long stringa very very long stringa very very long stringa very very long stringa very very long stringa very very long stringa very very long stringa very very long stringsss')).to.equal('Title must be within 1 to 255 characters')
   })
 
   it('should add to posts when creating new post', () => {

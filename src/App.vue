@@ -37,7 +37,7 @@
             </v-dialog>
 
         <transition-group name="flip-list" tag="ul" mode="out-in">
-          <post v-for="post in top20Posts" :key="post.title" :post="post" v-on:voted="sortPost" >
+          <post v-for="(post,index) in top20Posts" :key="index" :post="post" v-on:voted="sortPost" >
           </post>
         </transition-group>
       </v-content>
@@ -58,8 +58,8 @@ export default {
   methods: {
     // function to validate that the new post title is within 255 characters
     validateNewTitle: function (title) {
-      this.saveBtnDisabled = !(title.length <= 255)
-      return title.length <= 255 || 'Max 255 characters!'
+      this.saveBtnDisabled = title.length < 1 || title.length > 255
+      return title.length >= 1 && title.length <= 255 || 'Title must be within 1 to 255 characters'
     },
     // method to sort based on net votes scores.
     sortPost: function () {
