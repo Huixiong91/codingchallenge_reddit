@@ -1,4 +1,8 @@
-# codingchallenge_reddit
+# codingchallenge_reddit 
+[![Build Status](https://travis-ci.org/Huixiong91/codingchallenge_reddit.svg?branch=master)](https://travis-ci.org/Huixiong91/codingchallenge_reddit)
+[![Coverage Status](https://coveralls.io/repos/github/Huixiong91/codingchallenge_reddit/badge.svg?branch=master)](https://coveralls.io/github/Huixiong91/codingchallenge_reddit?branch=master)
+
+
 
 > A Coding Challenge to make a simple Reddit
 
