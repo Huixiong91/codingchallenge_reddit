@@ -10,7 +10,8 @@
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
-    "lint": "eslint --ext .js,.vue src test/unit/specs"
+    "lint": "eslint --ext .js,.vue src test/unit/specs",
+    "coveralls": "cat ./test/unit/coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "dependencies": {
     "vue": "^2.4.2",
@@ -31,6 +32,7 @@
     "chalk": "^2.0.1",
     "connect-history-api-fallback": "^1.3.0",
     "copy-webpack-plugin": "^4.0.1",
+    "coveralls": "^3.0.0",
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.0",
     "cssnano": "^3.10.0",
@@ -59,6 +61,7 @@
     "karma-spec-reporter": "0.0.31",
     "karma-webpack": "^2.0.2",
     "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
     "node-sass": "^4.6.0",
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
