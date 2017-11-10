@@ -9,7 +9,7 @@
 
 ## Design
 > Made out of 2 components, **Post** & **App**.
-1. **Post** - Disable post in a cardview with title, 2 buttons to upvote & downvote and the current netvotes(upvote - downvote)
+1. **Post** - Display post in a cardview with title, 2 buttons to upvote & downvote and the current netvotes(upvote - downvote)
 2. **App** - The main page. It will handle creation of new post through a button that will open a dialog when clicked. It also keep tracks
 of a list of post and shows list of top 20 posts by making use of the **Post** component.
 
