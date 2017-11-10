@@ -52,7 +52,6 @@
 
 <script>
 import Post from './components/Post'
-import _ from 'lodash'
 export default {
   components: {
     'post': Post
@@ -65,20 +64,30 @@ export default {
     },
     // method to sort based on net votes scores.
     sortPost: function () {
-      // commented out as chrome sort is not stable, causing some vue animation on list rendering
-      // Edge and Firefox is stable...
-      // this.posts.sort(function (a, b) {
-      //   let netVotesA = a.numOfUpVotes - a.numOfDownVotes
-      //   let netVotesB = b.numOfUpVotes - b.numOfDownVotes
-      //   if (netVotesA > netVotesB) return -1
-      //   else if (netVotesA < netVotesB) return 1
-      //   return 0
-      // })
-      this.posts = _.orderBy(this.posts, ['netVotes'], ['desc']) // use lodash orderBy, which is stable.
+      // Chrome's Array.sort() function is unstable... Edge and Firefox is stable...
+      // My hack around idea was to somehow track their index, sort based on their index if the value to compare, in this case netVotes is the same.
+      let indices = []
+      for (let i = 0; i < this.posts.length; i++) {
+        indices.push({
+          id: this.posts[i].id,
+          index: i
+        })
+      }
+      this.posts.sort(function (a, b) {
+        let netVotesA = a.numOfUpVotes - a.numOfDownVotes
+        let netVotesB = b.numOfUpVotes - b.numOfDownVotes
+        if (netVotesA > netVotesB) return -1
+        else if (netVotesA < netVotesB) return 1
+        // return 0  Can't return 0 as its order will be randomise by chrome.
+        // hackaround, sort by index.
+        let aIndex = indices.findIndex(x => x.id === a.id)
+        let bIndex = indices.findIndex(x => x.id === b.id)
+        return aIndex < bIndex ? -1 : 1 // index was before, it should also now come before (-1)
+      })
     },
     // method to create a new post
     createNewPost: function () {
-      var newPost = { // new post object
+      let newPost = { // new post object
         id: this.totalNumOfPosts,
         title: this.newTopicTitle,
         numOfDownVotes: 0,
