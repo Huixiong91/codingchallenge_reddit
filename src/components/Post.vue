@@ -1,5 +1,5 @@
 <template>
-  <v-card hover style="margin:10px" dark color="teal">
+  <v-card hover style="margin:1em" dark color="teal">
     <v-layout>
       <v-flex xs1 style="margin:5px">
         <v-layout column >
@@ -18,8 +18,8 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs11 style="margin:20px">
-        <h5 style="overflow:hidden;text-overflow:ellipsis">{{ post.title }}</h5>
+      <v-flex xs11 wrap>
+        <h5 style="overflow:hidden;text-overflow:ellipsis;margin:1em 1em">{{ post.title }}</h5>
       </v-flex>
     </v-layout>
   </v-card>
