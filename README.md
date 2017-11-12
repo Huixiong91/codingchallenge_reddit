@@ -5,7 +5,7 @@
   <a href="https://github.com/Huixiong91/codingchallenge_reddit"><img src="https://img.shields.io/david/Huixiong91/codingchallenge_reddit.svg" alt="Dependencies"></a>
 </p>
 
-> A Coding Challenge to make a simple Reddit
+> A Coding Challenge to make a simple Reddit. See it live: https://codingchallengereddit.nghuixiong.com
 
 ## Design
 > Made out of 2 components, **Post** & **App**.
